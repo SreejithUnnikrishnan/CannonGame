@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cannon Game</string>
+    <string name="results_format">Shots fired: %1$d\nTotal time: %2$.1f\nScore: %3$d</string>
+    <string name="reset_game">Reset Game</string>
+    <string name="next_level">Next Level</string>
+    <string name="win">You win!</string>
+    <string name="lose">You lose!</string>
+    <string name="high_score_saved">Highest Score: %3d</string>
+    <string name="time_remaining_format">Time remaining: %.1f seconds</string>
+
+</resources>
