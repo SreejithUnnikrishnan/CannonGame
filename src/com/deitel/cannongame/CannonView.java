@@ -45,6 +45,8 @@ public class CannonView extends SurfaceView
    private double totalElapsedTime; // elapsed seconds 
    private int score = 0;
    private static int newHighScore = 0;
+   Context context; 
+   private SharedPreference sharedPreference;
    
 
    // variables for the blocker and target
@@ -109,6 +111,9 @@ public class CannonView extends SurfaceView
       blocker = new Line(); // create the blocker as a Line
       target = new Line(); // create the target as a Line
       cannonball = new Point(); // create the cannonball as a Point
+      sharedPreference = new SharedPreference();
+      this.context = context;
+      newHighScore = sharedPreference.getHighestScore(context);
 
       // initialize hitStates as a boolean array
       hitStates = new boolean[TARGET_PIECES];
@@ -189,6 +194,9 @@ public class CannonView extends SurfaceView
 	   score = 0;
 	   STAGES = 1;
 	   TARGET_PIECES = STAGES;
+	   sharedPreference = new SharedPreference();
+	   newHighScore = sharedPreference.getHighestScore(context);
+	   
 	   hitStates = new boolean[TARGET_PIECES];
       // set every element of hitStates to false--restores target pieces
       for (int i = 0; i < TARGET_PIECES; i++)
@@ -222,6 +230,8 @@ public class CannonView extends SurfaceView
    {
 	   STAGES = STAGES + 1;
 	   TARGET_PIECES = STAGES;
+	   sharedPreference = new SharedPreference();
+	   newHighScore = sharedPreference.getHighestScore(context);
 	   hitStates = new boolean[TARGET_PIECES];
 	   pieceLength = (targetEnd - targetBeginning) / TARGET_PIECES;
 	   // set every element of hitStates to false--restores target pieces
@@ -506,6 +516,7 @@ public class CannonView extends SurfaceView
                else{
             	   if(newHighScore < score){
             		   newHighScore = score;
+            		   sharedPreference.addHighestScore(context, newHighScore);
             	   }
             	
                // display number of shots fired and total time elapsed
